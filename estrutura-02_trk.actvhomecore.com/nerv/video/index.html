@@ -692,20 +692,44 @@
     <!-- ------- Pagina ---------- -->
 
     <script>
-      const tempoPitch = 3
+      var listPitch = {
+        "6a63a3951a41420238d9f0c3": { delay: 4534, utm: "sub16=L-5" },
+        "6a63a3ce90be3e33683f3d11": { delay: 120, utm: "sub16=L-5_SF" },
+      }
 
-      const minutos = Math.floor(tempoPitch / 100)
-      const segundos = tempoPitch % 100
-      const tempoPitchSegundos = minutos * 60 + segundos
+      var alreadyInitialized = false
 
-      var delaySeconds = tempoPitchSegundos
+      var updateLinksWithUTM = function (utmParam) {
+        var links = document.querySelectorAll('a[href]:not([href*="#"])')
+        var separator = "?"
+        var queryString = separator + utmParam
+        for (var i = 0; i < links.length; i++) {
+          var link = links[i]
+          if (link.href.indexOf(utmParam) !== -1) continue
+          if (utmParam === undefined) return
+          var baseUrl = link.href.split("?")[0]
+          link.href = baseUrl + queryString
+        }
+      }
 
-      var player = document.querySelector("vturb-smartplayer")
+      document.addEventListener("player:ready", function (event) {
+        if (alreadyInitialized) return
 
-      player.addEventListener("player:ready", function () {
-        player.displayHiddenElements(delaySeconds, [".esconder"], {
+        var detail = event.detail || {}
+        var config = detail.config || {}
+        var player =
+          detail.player || document.querySelector("vturb-smartplayer")
+        var playerId = config.id
+        var pitchConfig = listPitch[playerId]
+
+        if (!playerId || !pitchConfig) return
+
+        alreadyInitialized = true
+
+        player.displayHiddenElements(pitchConfig.delay, [".esconder"], {
           persist: true,
         })
+        //updateLinksWithUTM(pitchConfig.utm);
       })
     </script>
 
