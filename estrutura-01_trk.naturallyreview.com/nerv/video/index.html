@@ -323,23 +323,13 @@
       <section id="vsl-content">
         <article id="vsl">
           <vturb-smartplayer
-            id="vid-6a63720a81a7ab6a93e7e54e"
+            id="ab-6a6386a850e9f208d582f91d"
             style="display: block; margin: 0 auto; width: 100%"
-            ><div
-              class="vturb-player-placeholder"
-              style="
-                position: relative;
-                width: 100%;
-                padding: 56.25% 0 0;
-                z-index: 0;
-                background-color: black;
-              "
-            ></div
           ></vturb-smartplayer>
           <script type="text/javascript">
             var s = document.createElement("script")
             ;((s.src =
-              "https://scripts.converteai.net/44b62239-d730-47b6-ae87-62548241599d/players/6a63720a81a7ab6a93e7e54e/v4/player.js"),
+              "https://scripts.converteai.net/44b62239-d730-47b6-ae87-62548241599d/ab-test/6a6386a850e9f208d582f91d/player.js"),
               (s.async = !0),
               document.head.appendChild(s))
           </script>
@@ -692,20 +682,45 @@
     <!-- ------- Pagina ---------- -->
 
     <script>
-      const tempoPitch = 3
+      var listPitch = {
+        "6a638601693a7da9c2458b47": { delay: 3, utm: "sub16=L-5" },
+        // "6a638601693a7da9c2458b47": { delay: 4534, utm: "sub16=L-5" },
+        "6a6386c13059c2c13bc480c4": { delay: 3, utm: "sub16=L-5_SF" },
+      }
 
-      const minutos = Math.floor(tempoPitch / 100)
-      const segundos = tempoPitch % 100
-      const tempoPitchSegundos = minutos * 60 + segundos
+      var alreadyInitialized = false
 
-      var delaySeconds = tempoPitchSegundos
+      var updateLinksWithUTM = function (utmParam) {
+        var links = document.querySelectorAll('a[href]:not([href*="#"])')
+        var separator = "?"
+        var queryString = separator + utmParam
+        for (var i = 0; i < links.length; i++) {
+          var link = links[i]
+          if (link.href.indexOf(utmParam) !== -1) continue
+          if (utmParam === undefined) return
+          var baseUrl = link.href.split("?")[0]
+          link.href = baseUrl + queryString
+        }
+      }
 
-      var player = document.querySelector("vturb-smartplayer")
+      document.addEventListener("player:ready", function (event) {
+        if (alreadyInitialized) return
 
-      player.addEventListener("player:ready", function () {
-        player.displayHiddenElements(delaySeconds, [".esconder"], {
+        var detail = event.detail || {}
+        var config = detail.config || {}
+        var player =
+          detail.player || document.querySelector("vturb-smartplayer")
+        var playerId = config.id
+        var pitchConfig = listPitch[playerId]
+
+        if (!playerId || !pitchConfig) return
+
+        alreadyInitialized = true
+
+        player.displayHiddenElements(pitchConfig.delay, [".esconder"], {
           persist: true,
         })
+        //updateLinksWithUTM(pitchConfig.utm);
       })
     </script>
 
