@@ -1,0 +1,384 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <script type="text/javascript" src="https://trk.naturallyreview.com/track.js?rtkcmpid=6a70ad33c1dc71d34362cb69"></script>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="robots" content="noindex, nofollow" />
+    <title>Discover the Little-Known Yellow Vitamin</title>
+    <style>
+      :root {
+        --bg: #f4f6f9;
+        --card: #ffffff;
+        --ink: #1a1d21;
+        --muted: #5b6470;
+        --accent: #16a34a;
+        --accent-dark: #12833d;
+        --line: #e6e9ee;
+      }
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+      html {
+        -webkit-text-size-adjust: 100%;
+      }
+      body {
+        font-family:
+          -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica,
+          Arial, sans-serif;
+        background: var(--bg);
+        color: var(--ink);
+        line-height: 1.6;
+        padding: 10px;
+      }
+      .wrap {
+        max-width: 640px;
+        margin: 0 auto;
+        background: var(--card);
+        border: 1px solid var(--line);
+        border-radius: 16px;
+        padding: clamp(20px, 5vw, 40px);
+        box-shadow: 0 10px 40px rgba(20, 30, 50, 0.06);
+      }
+
+      /* Headline */
+      .eyebrow {
+        display: inline-block;
+        font-size: 0.78rem;
+        font-weight: 700;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        color: var(--accent-dark);
+        background: rgba(22, 163, 74, 0.1);
+        padding: 6px 12px;
+        border-radius: 999px;
+        margin-bottom: 16px;
+      }
+      h1 {
+        font-size: clamp(1.6rem, 5.5vw, 2.4rem);
+        line-height: 1.2;
+        font-weight: 800;
+        letter-spacing: -0.01em;
+        margin-bottom: 14px;
+      }
+      h1 .hl {
+        color: var(--accent-dark);
+      }
+      .lead {
+        font-size: clamp(1rem, 3.6vw, 1.15rem);
+        color: var(--muted);
+        margin-bottom: 24px;
+      }
+
+      /* Image */
+      .media {
+        position: relative;
+        display: block;
+        margin: 0 0 8px;
+        border-radius: 12px;
+        overflow: hidden;
+        border: 1px solid var(--line);
+        box-shadow: 0 6px 24px rgba(20, 30, 50, 0.08);
+      }
+      .media img {
+        display: block;
+        width: 100%;
+        height: auto;
+      }
+
+      /* Play button overlay */
+      .play {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: clamp(64px, 16vw, 92px);
+        height: clamp(64px, 16vw, 92px);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: rgba(255, 255, 255, 0.18);
+        border: 3px solid rgba(255, 255, 255, 0.95);
+        box-shadow: 0 4px 18px rgba(0, 0, 0, 0.35);
+        backdrop-filter: blur(2px);
+        animation: playpulse 1.8s ease-out infinite;
+        cursor: pointer;
+        z-index: 2;
+      }
+      .play::before {
+        content: "";
+        display: block;
+        width: 0;
+        height: 0;
+        margin-left: 14%;
+        border-style: solid;
+        border-width: clamp(12px, 3.4vw, 18px) 0 clamp(12px, 3.4vw, 18px)
+          clamp(20px, 5.6vw, 30px);
+        border-color: transparent transparent transparent #fff;
+      }
+      @keyframes playpulse {
+        0% {
+          box-shadow:
+            0 4px 18px rgba(0, 0, 0, 0.35),
+            0 0 0 0 rgba(255, 255, 255, 0.6);
+        }
+        70% {
+          box-shadow:
+            0 4px 18px rgba(0, 0, 0, 0.35),
+            0 0 0 22px rgba(255, 255, 255, 0);
+        }
+        100% {
+          box-shadow:
+            0 4px 18px rgba(0, 0, 0, 0.35),
+            0 0 0 0 rgba(255, 255, 255, 0);
+        }
+      }
+      @media (prefers-reduced-motion: reduce) {
+        .play {
+          animation: none;
+        }
+      }
+
+      .hook {
+        font-size: clamp(1.05rem, 3.8vw, 1.3rem);
+        font-weight: 700;
+        text-align: center;
+        margin: 22px 0 20px;
+      }
+
+      /* CTA button */
+      .cta {
+        display: block;
+        width: 100%;
+        text-align: center;
+        text-decoration: none;
+        background: var(--accent);
+        color: #fff;
+        font-size: clamp(1.05rem, 4vw, 1.25rem);
+        font-weight: 800;
+        letter-spacing: 0.02em;
+        text-transform: uppercase;
+        padding: 18px 20px;
+        border-radius: 12px;
+        box-shadow: 0 8px 22px rgba(22, 163, 74, 0.35);
+        animation: pulse 2s infinite;
+        transition:
+          transform 0.15s ease,
+          background 0.15s ease;
+      }
+      .cta:hover {
+        background: var(--accent-dark);
+        transform: translateY(-2px);
+      }
+      .cta:active {
+        transform: translateY(0);
+      }
+      @keyframes pulse {
+        0% {
+          box-shadow: 0 8px 22px rgba(22, 163, 74, 0.35);
+        }
+        50% {
+          box-shadow: 0 8px 30px rgba(22, 163, 74, 0.55);
+        }
+        100% {
+          box-shadow: 0 8px 22px rgba(22, 163, 74, 0.35);
+        }
+      }
+      @media (prefers-reduced-motion: reduce) {
+        .cta {
+          animation: none;
+        }
+      }
+
+      /* Content */
+      .content {
+        margin: 28px 0;
+      }
+      .content p {
+        margin-bottom: 16px;
+        font-size: 1.02rem;
+      }
+      .content p:first-child {
+        font-weight: 700;
+        font-size: 1.08rem;
+        color: var(--ink);
+      }
+      .closing {
+        text-align: center;
+        font-weight: 700;
+        margin: 24px 0 16px;
+      }
+
+      /* Disclaimer */
+      .disclaimer {
+        margin-top: 36px;
+        padding-top: 22px;
+        border-top: 1px solid var(--line);
+        font-size: 0.8rem;
+        line-height: 1.55;
+        color: #8a919c;
+      }
+      .disclaimer p {
+        margin-bottom: 12px;
+      }
+      .disclaimer .adv {
+        font-weight: 700;
+        text-transform: uppercase;
+        color: #6b7280;
+        letter-spacing: 0.02em;
+      }
+      .disclaimer .title {
+        font-weight: 700;
+        text-transform: uppercase;
+        color: #6b7280;
+        letter-spacing: 0.06em;
+        margin-bottom: 6px;
+      }
+    </style>
+  </head>
+  <body>
+    <main class="wrap">
+      <!-- ===== HEADLINE ===== -->
+
+      <h1>
+        Experts Confirm: Old Methods Don't Work.
+        <span class="hl"
+          >Discover the Little-Known Yellow Vitamin That May Target the Root
+          Cause of Sciatic Nerve Pain.</span
+        >
+      </h1>
+      <p class="lead">Watch the free video guide now.</p>
+
+      <!-- ===== IMAGE ===== -->
+      <a class="media" href="https://trk.naturallyreview.com/preclick" aria-label="Watch the free video">
+        <img
+          src="imgif.gif"
+          width="1138"
+          height="640"
+          alt="The Real Cause of Sciatic Nerve Pain May Not Show Up on an MRI"
+        />
+        <span class="play" aria-hidden="true"></span>
+      </a>
+
+      <p class="hook">
+        The Real Cause of Sciatic Nerve Pain May Not Show Up on an MRI.
+      </p>
+
+      <!-- ===== BUTTON 1 ===== -->
+      <a class="cta" href="https://trk.naturallyreview.com/preclick">Watch the Free Video Now</a>
+
+      <!-- ===== CONTENT ===== -->
+      <section class="content">
+        <p>
+          A retired researcher reveals how one small change to your bedtime
+          routine may begin relieving sciatic nerve pain in just a matter of
+          days.
+        </p>
+
+        <p>
+          Based on reports from more than forty-eight thousand people, some
+          experts believe that a little-known yellow vitamin may work by
+          addressing what they believe is a leading cause of sciatic nerve
+          pain—a common vitamin deficiency that may weaken the nerve's
+          protective coating, contributing to pain in the lower back, hips,
+          buttocks, and down the leg.
+        </p>
+
+        <p>
+          According to the presentation, this vitamin was studied by a Nobel
+          Prize-winning scientist and may help relieve sciatic nerve discomfort
+          without relying on painkillers, injections, or risky spinal
+          procedures.
+        </p>
+
+        <p>
+          According to the creators of the presentation, the
+          multi-billion-dollar pharmaceutical industry has little incentive to
+          make this information widely known. They claim that if people
+          discovered a vitamin costing just pennies a day could do what
+          expensive medications cannot, it would threaten a massive industry.
+        </p>
+
+        <p>
+          That's why they recommend watching the video as soon as possible to
+          learn more about this discovery before it's removed from the internet.
+        </p>
+      </section>
+
+      <p class="closing">
+        Click the button below and watch the video for free right now.
+      </p>
+
+      <!-- ===== BUTTON 2 ===== -->
+      <a class="cta" href="https://trk.naturallyreview.com/preclick">Watch the Free Video Now</a>
+
+      <!-- ===== DISCLAIMER ===== -->
+      <footer class="disclaimer">
+        <p>
+          These statements have not been evaluated by the FDA. This product is
+          not intended to diagnose, treat, cure or prevent any disease or
+          medical condition. Individual results may vary. Not a medical device.
+          Please consult your physician before using this or any other product
+          that is designed to help relieve a symptom or condition.
+        </p>
+
+        <p>
+          Nothing on this website should be considered personalized financial
+          advice. Any investments recommended herein should be made only after
+          consulting with your investment advisor and only after reviewing the
+          prospectus or financial statements of the company. Past performance
+          does not guarantee future results. The examples provided may not be
+          representative of typical results. Never risk more than you can afford
+          to lose.
+        </p>
+
+        <p class="adv">
+          This is an advertorial and not an actual news article, blog, or
+          consumer protection update.
+        </p>
+
+        <p>
+          <span class="title">Disclaimer</span>This website is not intended to
+          provide medical advice or to take the place of medical advice and
+          treatment from your personal physician. Visitors are advised to
+          consult their own doctors or other qualified health professional
+          regarding the treatment of any medical condition or the use of any
+          information provided on this website.
+        </p>
+      </footer>
+    </main>
+    <script>
+      function getParameterByName(name) {
+        const url = window.location.href
+        const nameRegex = name.replace(/[\[\]]/g, "\\$&")
+        const regex = new RegExp("[?&]" + nameRegex + "(=([^&#]*)|&|#|$)")
+        const results = regex.exec(url)
+        return results
+          ? decodeURIComponent(results[2].replace(/\+/g, " "))
+          : null
+      }
+
+      function sendPostback(url) {
+        fetch(url)
+          .then(() => console.log(`Postback sent: ${url}`))
+          .catch((error) => console.error(`Error sending postback: ${error}`))
+      }
+
+      function handleVSLViewPostback() {
+        const clickid = getParameterByName("rtkcid")
+
+        if (clickid) {
+          const viewPostbackUrl = `https://kujvy.ttrk.io/postback?clickid=${clickid}&type=Pressel`
+          sendPostback(viewPostbackUrl)
+        } else {
+          console.log("Parâmetro rtkcid não encontrado na URL para VSL View")
+        }
+      }
+
+      handleVSLViewPostback()
+    </script>
+  </body>
+</html>
