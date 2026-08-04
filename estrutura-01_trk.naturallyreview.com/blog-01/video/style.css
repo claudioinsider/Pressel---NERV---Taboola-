@@ -326,6 +326,10 @@ img {
 }
 .sds__card {
   position: relative;
+  display: block;
+  color: inherit;
+  text-decoration: none;
+  cursor: pointer;
   background: #fff;
   border: 1px solid #e2e6ea;
   border-radius: 12px;
@@ -469,12 +473,13 @@ img {
     box-shadow 0.15s ease,
     background 0.15s ease;
 }
-.sds__btn:hover {
+/* O botão acende ao passar o mouse em qualquer ponto do card */
+.sds__card:hover .sds__btn {
   background: linear-gradient(180deg, #ffbc5c 0%, #fb9c28 100%);
   transform: translateY(-2px);
   box-shadow: 0 8px 16px rgba(242, 139, 24, 0.45);
 }
-.sds__btn:active {
+.sds__card:active .sds__btn {
   transform: translateY(1px);
   border-bottom-width: 1px;
 }

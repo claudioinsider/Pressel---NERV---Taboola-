@@ -66,8 +66,12 @@ function onReady(fn) {
 onReady(function () {
   var SECONDS_TO_REVEAL_OFFER = 3 // segundos de vídeo até liberar a oferta
   var alreadyShownKey = "offerAlreadyDisplayed"
+  var revealed = false // trava: "timeupdate" dispara várias vezes por segundo
 
   function showOffer(scroll) {
+    if (revealed) return
+    revealed = true
+
     var blocks = document.querySelectorAll(".after-quiz")
     if (!blocks.length) return
     blocks.forEach(function (el) {
