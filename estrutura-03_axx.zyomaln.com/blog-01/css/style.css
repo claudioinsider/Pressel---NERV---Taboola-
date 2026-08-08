@@ -1,0 +1,490 @@
+/* ==========================================================================
+   PRESELL — EMAGRECIMENTO / BAKING SODA
+   Ordem: tokens > reset > navbar > layout > artigo > sidebar > CTA
+          > depoimentos > grid > comentarios > referencias > responsivo
+   ========================================================================== */
+
+/* ---------- TOKENS ---------- */
+:root {
+  --w-content: 939px;          /* largura da coluna do artigo */
+  --w-side: 300px;             /* largura da sidebar */
+  --gap-col: 40px;             /* espaco entre artigo e sidebar */
+
+  --c-text: #1a1a1a;
+  --c-body: #2a2a2a;
+  --c-muted: #888;
+  --c-line: #e5e5e5;
+  --c-accent: #c0392b;         /* vermelho editorial (categoria/headline) */
+  --c-cta: #cc0000;            /* vermelho do titulo do CTA */
+  --c-btn: #ff0000;            /* vermelho do botao */
+
+  --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif;
+  --font-serif: 'Source Serif 4', Georgia, 'Times New Roman', serif;
+}
+
+/* ---------- RESET ---------- */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { -webkit-text-size-adjust: 100%; }
+
+body {
+  background: #fff;
+  color: var(--c-text);
+  font-family: var(--font-sans);
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+img, svg { max-width: 100%; display: block; }
+img { height: auto; }
+a { color: inherit; text-decoration: none; }
+button { font: inherit; color: inherit; background: none; border: 0; cursor: pointer; }
+
+/* Seccoes abaixo do artigo: mesma largura da coluna do artigo */
+.cta, .reviews, .grid-section, .comments {
+  width: 100%;
+  max-width: var(--w-content);
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+/* Cabecalho reutilizado (sidebar "Sponsored" + grid "More from around the web") */
+.box-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 12px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid #d8d8d8;
+  margin-bottom: 12px;
+}
+.box-title { font-style: italic; font-weight: 800; font-size: 13px; text-transform: uppercase; letter-spacing: .5px; }
+.box-by { font-style: italic; font-size: 10px; color: var(--c-muted); }
+
+.label-sponsored { font-size: 9px; color: #999; text-transform: uppercase; letter-spacing: .5px; margin-top: 4px; }
+
+
+/* ==========================================================================
+   TOP STRIP + NAVBAR
+   ========================================================================== */
+.topstrip { height: 6px; background: #fff4d6; }
+
+.navbar { padding: 12px 0; background: #fff; border-bottom: 1px solid #f0f0f0; }
+.navbar-inner {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+}
+
+.nav-logo { display: flex; align-items: center; gap: 10px; flex-shrink: 0; }
+.nav-logo img { height: 44px; width: auto; object-fit: contain; }
+.nav-logo-text { font-size: 28px; font-weight: 900; letter-spacing: -1px; line-height: 1; color: #111; white-space: nowrap; }
+
+.nav-links { display: flex; align-items: center; justify-content: center; gap: 28px; flex: 1; }
+.nav-links a {
+  font-size: 14px; font-weight: 700; color: #111;
+  text-transform: uppercase; letter-spacing: .3px; white-space: nowrap;
+}
+.nav-links a:hover { color: var(--c-accent); }
+
+.nav-right { display: flex; align-items: center; gap: 16px; flex-shrink: 0; }
+
+.nav-signin {
+  display: inline-flex; align-items: center; gap: 8px;
+  padding: 8px 16px 8px 10px;
+  background: #f4f4f4; border-radius: 999px;
+  font-size: 13px; font-weight: 700; color: #111;
+  text-transform: uppercase; letter-spacing: .3px; white-space: nowrap;
+}
+.nav-signin-icon {
+  width: 22px; height: 22px; border-radius: 50%;
+  background: #fff; border: 1.5px solid #111;
+  display: inline-flex; align-items: center; justify-content: center;
+}
+.nav-signin-icon svg { width: 12px; height: 12px; fill: #111; }
+
+.nav-icon-btn { padding: 4px; color: #111; display: inline-flex; align-items: center; justify-content: center; }
+.nav-icon-btn svg { width: 22px; height: 22px; }
+.nav-hamburger { flex-direction: column; gap: 4px; }
+.nav-hamburger span { display: block; width: 22px; height: 2px; background: #111; border-radius: 1px; }
+
+
+/* ==========================================================================
+   LAYOUT — ARTIGO + SIDEBAR
+   ========================================================================== */
+.page-wrap { padding: 30px 24px 40px; }
+
+/* A coluna do artigo encolhe (minmax) em vez de estourar a tela entre
+   1280px e 1327px — largura ideal = 939 + 40 + 300 + 48 de padding. */
+.page-grid {
+  display: grid;
+  grid-template-columns: minmax(0, var(--w-content)) var(--w-side);
+  gap: var(--gap-col);
+  width: 100%;
+  max-width: calc(var(--w-content) + var(--gap-col) + var(--w-side));
+  margin: 0 auto;
+  align-items: start;
+}
+
+.article-col { min-width: 0; }
+.sidebar-col { position: sticky; top: 20px; align-self: start; }
+
+
+/* ==========================================================================
+   ARTIGO
+   ========================================================================== */
+.article-cat {
+  font-size: 11px; font-weight: 700; letter-spacing: 1.5px;
+  text-transform: uppercase; color: var(--c-accent); margin-bottom: 12px;
+}
+.article-cat span { color: #999; font-weight: 400; letter-spacing: .5px; }
+
+.headline-wrap { border-left: 5px solid var(--c-accent); padding-left: 20px; margin-bottom: 24px; }
+.headline {
+  font-family: var(--font-serif);
+  font-size: 42px; font-weight: 800; color: #111;
+  line-height: 1.12; letter-spacing: -.5px;
+}
+.headline .hl-red { color: var(--c-accent); }
+
+.article-date {
+  display: flex; align-items: center; gap: 6px;
+  font-size: 13px; font-weight: 600; color: #555;
+  letter-spacing: .5px; text-transform: uppercase; margin-bottom: 6px;
+}
+.article-date .chev { font-size: 14px; font-weight: 400; line-height: 1; color: #999; }
+
+.author-row {
+  display: flex; align-items: center; flex-wrap: wrap; gap: 10px;
+  padding: 14px 0 22px; margin-bottom: 30px;
+  border-top: 1px solid var(--c-line);
+  border-bottom: 1px solid var(--c-line);
+}
+.author-by { font-size: 12px; font-weight: 500; color: var(--c-muted); text-transform: uppercase; letter-spacing: .5px; }
+.author-avatar {
+  width: 40px; height: 40px; border-radius: 50%; background: var(--c-accent);
+  display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+}
+.author-initials { font-size: 13px; font-weight: 700; color: #fff; }
+.author-name { font-size: 15px; font-weight: 700; color: #111; text-decoration: underline; text-underline-offset: 3px; }
+
+.hero-image { margin-bottom: 28px; }
+.hero-image img { width: 100%; border-radius: 4px; }
+
+.article-body p { font-size: 18px; line-height: 1.65; color: var(--c-body); margin-bottom: 22px; }
+.article-body p strong { color: #111; }
+.article-body img { width: 100%; border-radius: 4px; margin: 22px 0; }
+
+
+/* ==========================================================================
+   SIDEBAR
+   ========================================================================== */
+.sidebar-box {
+  padding: 14px;
+  background: #fff;
+  border: 1px solid #e0e0e0;
+  border-radius: 4px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, .04);
+}
+.sidebar-card {
+  display: flex; gap: 10px;
+  padding: 10px 0;
+  border-bottom: 1px solid #ececec;
+  transition: opacity .15s;
+}
+.sidebar-card:hover { opacity: .8; }
+.sidebar-card:last-child { border-bottom: 0; }
+.sidebar-thumb { width: 90px; height: 60px; flex-shrink: 0; object-fit: cover; border-radius: 2px; background: #e8e8e8; }
+.sidebar-card-title { font-size: 13px; font-weight: 600; line-height: 1.3; }
+
+
+/* ==========================================================================
+   CTA PRINCIPAL
+   ========================================================================== */
+.cta { padding-top: 20px; padding-bottom: 10px; }
+
+.cta-title {
+  font-size: 25px; font-weight: 700; line-height: 1.4;
+  color: var(--c-cta); text-align: center;
+  margin-bottom: 20px;
+}
+
+.cta-image { display: block; margin-bottom: 20px; }
+.cta-image img { width: 100%; }
+
+/* Pulso continuo para chamar atencao no CTA */
+@media (prefers-reduced-motion: no-preference) {
+  .cta-image img { animation: cta-pulse 2s ease-in-out infinite; }
+}
+@keyframes cta-pulse {
+  0%, 100% { transform: scale(1); }
+  50%      { transform: scale(1.03); }
+}
+
+.cta-button-wrap { text-align: center; }
+.cta-button {
+  display: inline-block;
+  padding: 12px 24px;
+  min-height: 40px;
+  background: var(--c-btn);
+  color: #fff;
+  border-radius: 3px;
+  font-size: clamp(15px, 1.3vw, 21px);
+  font-weight: 600;
+  line-height: 1.4;
+  text-align: center;
+  text-transform: uppercase;
+  transition: background-color .2s;
+}
+.cta-button:hover { background: #d40000; }
+
+/* Aviso "disponivel ate ..." */
+.notice {
+  display: flex; align-items: center; gap: 12px;
+  max-width: 720px; margin: 18px auto 0; padding: 14px 20px;
+  background: linear-gradient(90deg, #fff8e1 0%, #fff3c4 100%);
+  border-left: 4px solid #d4a017;
+  border-radius: 4px;
+  box-shadow: 0 2px 8px rgba(212, 160, 23, .12);
+  font-size: 15px; font-weight: 600; line-height: 1.45; color: #5a4520;
+}
+.notice p { margin: 0; }
+.notice strong { color: #b30000; font-weight: 800; text-transform: uppercase; letter-spacing: .3px; }
+.notice-date { color: #000; font-weight: 700; }
+.notice-icon { font-size: 20px; flex-shrink: 0; }
+@media (prefers-reduced-motion: no-preference) {
+  .notice-icon { animation: notice-blink 1.5s ease-in-out infinite; }
+}
+@keyframes notice-blink {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50%      { opacity: .6; transform: scale(.9); }
+}
+
+
+/* ==========================================================================
+   DEPOIMENTOS
+   ========================================================================== */
+.reviews { padding-top: 20px; padding-bottom: 20px; }
+
+.review {
+  display: grid;
+  grid-template-columns: 70px 1fr;
+  column-gap: 18px;
+  row-gap: 6px;
+  padding: 26px 0;
+  border-bottom: 1px solid #e3e3e3;
+}
+.review:last-child { border-bottom: 0; }
+
+.review-avatar {
+  width: 60px; height: 60px; border-radius: 50%; overflow: hidden;
+  background: #e3e3e3; grid-row: 1 / span 2; align-self: start;
+}
+.review-avatar img { width: 100%; height: 100%; object-fit: cover; }
+
+.review-head { min-width: 0; }  /* estrelas + nome (coluna 2, linha 1) */
+
+.stars { display: flex; align-items: center; gap: 3px; margin-bottom: 4px; }
+.stars svg { width: 18px; height: 18px; fill: #f5b400; }
+
+.review-name { font-size: 19px; font-weight: 800; line-height: 1.2; margin-bottom: 10px; }
+.review-text { grid-column: 2 / 3; font-size: 16px; line-height: 1.55; color: #2c2c2c; }
+
+
+/* ==========================================================================
+   GRID "MORE FROM AROUND THE WEB"
+   ========================================================================== */
+.grid-section { padding-top: 20px; padding-bottom: 20px; }
+.grid-section .box-title { font-size: 18px; text-transform: none; letter-spacing: 0; }
+.grid-section .box-by { font-size: 12px; }
+.grid-section .box-head { margin-bottom: 18px; }
+
+.grid-cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px 22px; }
+
+.grid-card { display: flex; flex-direction: column; transition: opacity .15s; }
+.grid-card:hover { opacity: .9; }
+.grid-thumb {
+  width: 100%; aspect-ratio: 16 / 10; object-fit: cover;
+  border-radius: 2px; background: #e8e8e8; margin-bottom: 10px;
+}
+.grid-card-title { font-size: 15px; font-weight: 700; line-height: 1.3; margin-bottom: 10px; flex: 1; }
+.grid-card-foot { display: flex; align-items: center; justify-content: space-between; gap: 10px; }
+.grid-card-foot .label-sponsored { font-size: 10px; margin-top: 0; }
+.grid-card-btn {
+  display: inline-block; padding: 6px 14px;
+  font-size: 12px; font-weight: 600;
+  background: #fff; border: 1px solid #1a1a1a; border-radius: 2px;
+  white-space: nowrap;
+}
+
+
+/* ==========================================================================
+   COMENTARIOS (estilo Facebook)
+   ========================================================================== */
+.comments { padding-top: 24px; padding-bottom: 24px; color: #050505; }
+.comments-header { font-size: 17px; font-weight: 700; margin-bottom: 18px; }
+.comments-box { padding: 18px 16px; border: 1px solid #e4e6eb; border-radius: 14px; }
+
+.comment { display: flex; gap: 8px; margin-bottom: 14px; }
+.comment--reply { margin-left: 48px; }
+
+.comment-avatar { width: 40px; height: 40px; border-radius: 50%; overflow: hidden; flex-shrink: 0; background: #e4e6eb; }
+.comment-avatar img { width: 100%; height: 100%; object-fit: cover; }
+
+.comment-body { flex: 1; min-width: 0; }
+.comment-bubble {
+  position: relative; display: inline-block; max-width: 100%;
+  padding: 9px 16px 10px; background: #f0f2f5; border-radius: 18px;
+}
+.comment-name { font-size: 13px; font-weight: 600; line-height: 1.3; color: #385898; margin-bottom: 2px; }
+.comment-text { font-size: 15px; line-height: 1.4; overflow-wrap: anywhere; }
+
+.reactions {
+  position: absolute; right: 10px; bottom: -10px;
+  display: inline-flex; align-items: center; gap: 2px;
+  padding: 1px 6px 1px 2px;
+  background: #fff; border-radius: 99px; box-shadow: 0 1px 3px rgba(0, 0, 0, .18);
+}
+.react {
+  width: 18px; height: 18px; border-radius: 50%;
+  display: inline-flex; align-items: center; justify-content: center;
+}
+.react svg { width: 11px; height: 11px; fill: #fff; }
+.react-like { background: #1877f2; }
+.react-love { background: #f33e58; margin-left: -6px; }
+.react-count { font-size: 13px; font-weight: 500; color: #65676b; margin-left: 3px; }
+
+.comment-meta {
+  display: flex; align-items: center; gap: 14px;
+  padding: 6px 0 0 16px;
+  font-size: 12px; font-weight: 600; color: #65676b;
+}
+.comment-meta .act { cursor: pointer; }
+.comment-meta .act:hover { text-decoration: underline; }
+.comment-meta .time { font-weight: 400; }
+
+.comments-footer { text-align: center; font-size: 14px; font-weight: 700; margin-top: 18px; }
+
+
+/* ==========================================================================
+   REFERENCIAS (full-bleed)
+   ========================================================================== */
+.refs { padding: 40px 20px 50px; background: #fff; font-family: Arial, Helvetica, sans-serif; }
+.refs-title {
+  max-width: 900px; margin: 0 auto 30px;
+  text-align: center; font-size: 26px; font-weight: 700; color: #234a68;
+}
+.refs-grid { max-width: 900px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 16px 40px; }
+.refs-item { font-size: 13px; line-height: 1.6; color: #333; }
+
+
+/* ==========================================================================
+   RESPONSIVO
+   ========================================================================== */
+
+/* ----- TABLET: sidebar desce para baixo do artigo ----- */
+@media (max-width: 1279px) {
+  .page-grid {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    max-width: 720px;
+    gap: 30px;
+  }
+  .sidebar-col { position: static; }
+  .nav-links { display: none; }
+
+  .cta, .reviews, .grid-section, .comments { max-width: 720px; }
+}
+
+/* ----- MOBILE ----- */
+@media (max-width: 768px) {
+  .topstrip { height: 4px; }
+
+  .navbar { padding: 10px 0; }
+  .navbar-inner { padding: 0 12px; gap: 8px; }
+  .nav-logo { gap: 7px; }
+  .nav-logo img { height: 34px; }
+  .nav-logo-text { font-size: 22px; letter-spacing: -.5px; }
+  .nav-right { gap: 10px; }
+  .nav-signin { padding: 6px 12px 6px 6px; gap: 6px; font-size: 11px; }
+  .nav-signin-icon { width: 20px; height: 20px; }
+  .nav-signin-icon svg { width: 11px; height: 11px; }
+  .nav-icon-btn svg { width: 20px; height: 20px; }
+  .nav-hamburger span { width: 20px; }
+
+  .page-wrap { padding: 18px 14px 30px; }
+  .page-grid { gap: 24px; }
+  .cta, .reviews, .grid-section, .comments { padding-left: 14px; padding-right: 14px; }
+
+  .article-cat { font-size: 10px; margin-bottom: 10px; }
+  .headline-wrap { padding-left: 14px; border-left-width: 4px; margin-bottom: 18px; }
+  .headline { font-size: 26px; line-height: 1.18; letter-spacing: -.3px; }
+  .article-date { font-size: 11px; }
+  .author-row { padding: 12px 0 18px; margin-bottom: 22px; gap: 8px; }
+  .author-avatar { width: 34px; height: 34px; }
+  .author-initials { font-size: 11px; }
+  .author-name { font-size: 13px; }
+  .author-by { font-size: 10px; }
+
+  .hero-image { margin-bottom: 20px; }
+  .article-body p { font-size: 16px; line-height: 1.6; margin-bottom: 18px; }
+  .article-body img { margin: 16px 0; }
+
+  .sidebar-box { padding: 12px; }
+  .sidebar-thumb { width: 80px; height: 54px; }
+  .sidebar-card-title { font-size: 12px; }
+
+  .cta-title { font-size: clamp(16px, 3.6vw, 25px); }
+  .cta-button { font-size: clamp(14px, 3.6vw, 21px); }
+
+  .notice { padding: 12px 16px; gap: 10px; font-size: 13.5px; }
+  .notice-icon { font-size: 18px; }
+
+  .review { grid-template-columns: 50px 1fr; column-gap: 14px; padding: 20px 0; }
+  .review-avatar { width: 44px; height: 44px; }
+  .stars svg { width: 15px; height: 15px; }
+  .review-name { font-size: 16px; margin-bottom: 8px; }
+  .review-text { font-size: 14px; line-height: 1.5; }
+
+  .grid-cards { grid-template-columns: 1fr 1fr; gap: 18px 14px; }
+  .grid-section .box-title { font-size: 15px; }
+  .grid-card-title { font-size: 13px; }
+  .grid-card-btn { font-size: 11px; padding: 5px 10px; }
+
+  .comments { padding-top: 16px; padding-bottom: 16px; }
+  .comment--reply { margin-left: 28px; }
+  .comment-avatar { width: 34px; height: 34px; }
+  .comment-text { font-size: 14px; }
+
+  .refs { padding: 28px 16px 36px; }
+  .refs-title { font-size: 20px; margin-bottom: 20px; }
+  .refs-grid { grid-template-columns: 1fr; gap: 14px; }
+}
+
+/* ----- MOBILE PEQUENO ----- */
+@media (max-width: 480px) {
+  .grid-cards { grid-template-columns: 1fr; }
+}
+
+@media (max-width: 420px) {
+  .navbar-inner { padding: 0 10px; gap: 6px; }
+  .nav-logo img { height: 30px; }
+  .nav-logo-text { font-size: 19px; }
+  .nav-signin { padding: 6px; }
+  .nav-signin-text { display: none; }
+  .nav-right { gap: 8px; }
+
+  .page-wrap { padding: 14px 10px 24px; }
+  .cta, .reviews, .grid-section, .comments { padding-left: 10px; padding-right: 10px; }
+
+  .headline { font-size: 22px; }
+  .article-body p { font-size: 15px; }
+  .sidebar-thumb { width: 72px; height: 48px; }
+  .sidebar-card-title { font-size: 11.5px; line-height: 1.35; }
+}
